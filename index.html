@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苏兆铭 - 六塘小学</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .profile-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .avatar-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        
+        .bio {
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #f0f0f0;
+            font-size: 1.1rem;
+        }
+        
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .hobby {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .hobby:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .details-card {
+            flex: 2;
+            min-width: 300px;
+            max-width: 500px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            color: #ffd700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+        }
+        
+        .about-me {
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: #f0f0f0;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .achievement {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .achievement:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .achievement i {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .dream {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .dream-title {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .dream-text {
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .school {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .profile-card {
+            animation-delay: 0.2s;
+        }
+        
+        .details-card {
+            animation-delay: 0.4s;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 个人信息卡片 -->
+        <div class="card profile-card floating">
+            <div class="avatar-container">
+                <img src="fc5d7b63316f78b12f6e2a688f3dbfc11762063448685.jpg" alt="苏兆铭的头像" class="avatar">
+            </div>
+            <h1 class="name">苏兆铭</h1>
+            <div class="school">六塘小学</div>
+            <p class="title">五年级学生 | 未来科学家</p>
+            <p class="bio">我是六塘小学五年级的学生，热爱学习、探索新知识。我喜欢科学实验和编程，梦想成为一名科学家！</p>
+            
+            <div class="hobbies">
+                <span class="hobby">科学实验</span>
+                <span class="hobby">编程</span>
+                <span class="hobby">足球</span>
+                <span class="hobby">画画</span>
+                <span class="hobby">阅读</span>
+                <span class="hobby">机器人</span>
+            </div>
+        </div>
+        
+        <!-- 详细信息卡片 -->
+        <div class="card details-card">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-me">
+                <p>大家好！我是苏兆铭，今年11岁，是六塘小学五年级的学生。</p>
+                <p>我性格开朗，喜欢交朋友，在班级里担任科学课代表。我特别喜欢上科学课，因为可以做各种有趣的实验！</p>
+                <p>除了学习，我还参加了学校的编程社团和足球队。我觉得编程就像是在和电脑对话，非常神奇！</p>
+            </div>
+            
+            <h2 class="section-title">我的成绩</h2>
+            <div class="achievements">
+                <div class="achievement">
+                    <i class="fas fa-award"></i>
+                    <h3>科学竞赛</h3>
+                    <p>校级一等奖</p>
+                </div>
+                <div class="achievement">
+                    <i class="fas fa-robot"></i>
+                    <h3>编程比赛</h3>
+                    <p>创意编程奖</p>
+                </div>
+                <div class="achievement">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>美术比赛</h3>
+                    <p>二等奖</p>
+                </div>
+                <div class="achievement">
+                    <i class="fas fa-futbol"></i>
+                    <h3>校园足球</h3>
+                    <p>最佳球员</p>
+                </div>
+            </div>
+            
+            <div class="dream">
+                <h3 class="dream-title">我的梦想</h3>
+                <p class="dream-text">我梦想成为一名科学家，发明能够帮助人们解决环境问题的新技术。我想研究如何让空气更干净，让水资源更清洁，让我们的地球变得更美好！</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // 头像点击特效
+            const avatar = document.querySelector('.avatar');
+            avatar.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+                setTimeout(() => {
+          this.style.transform = 'scale(1) rotate(0deg)';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+  </html>
